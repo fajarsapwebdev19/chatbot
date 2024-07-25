@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Toko Kue</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 50px auto;
+            border: 1px solid #e3e3e3;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: #fff;
+        }
+        .chat-box {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+        .message.user {
+            background: #007bff;
+            color: #fff;
+            margin-left: auto;
+        }
+        .message.bot {
+            background: #28a745;
+            color: #fff;
+        }
+        .message.user::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent transparent #007bff;
+            transform: translateY(-50%);
+        }
+        .message.bot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent #28a745 transparent transparent;
+            transform: translateY(-50%);
+        }
+        #chat-form {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        #user-input {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .btn-primary, .btn-danger {
+            border-radius: 20px;
+        }
+        #welcome-message {
+            display: none;
+            font-style: italic;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mb-4">
+        <div class="chat-container">
+            <h2 class="text-center mb-4">Chatbot Toko Kue</h2>
+            <div id="chat-box" class="chat-box mb-4">
+                <!-- Pesan chat akan ditampilkan di sini -->
+            </div>
+            <div id="welcome-message">
+                Selamat datang di layanan chat kami! Silakan ketikkan pertanyaan Anda tentang toko kue.
+            </div>
+            <form id="chat-form">
+                <input type="text" id="user-input" class="form-control" placeholder="Ketikkan pertanyaan Anda..." required>
+                <button type="submit" class="btn btn-primary">Kirim</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Petunjuk awal
+            var initialMessage = 'Selamat datang di layanan chat kami! Silakan ketikkan pertanyaan Anda tentang toko kue.';
+
+            // Tampilkan pesan petunjuk awal jika chat box kosong
+            function showWelcomeMessage() {
+                if ($('#chat-box').children().length === 0) {
+                    $('#welcome-message').show();
+                }
+            }
+
+            showWelcomeMessage();
+
+            $('#chat-form').on('submit', function(e) {
+                e.preventDefault();
+                var userInput = $('#user-input').val().trim();
+
+                userInput = $('<div/>').text(userInput).html();
+
+                if (userInput) {
+                    // Sembunyikan pesan sambutan setelah ada pesan dari pengguna
+                    $('#welcome-message').hide();
+                    
+                    $('#chat-box').append('<div class="message user"><span>' + userInput + '</span></div>');
+
+                    $.post('chatbot.php', { message: userInput }, function(response) {
+                        response = $('<div/>').text(response).html();
+                        $('#chat-box').append('<div class="message bot"><span>' + response + '</span></div>');
+                        $('#user-input').val('');
+                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                    });
+                } else {
+                    alert('Silakan ketikkan pertanyaan.');
+                }
+            });
+
+            $('#clear-chat').on('click', function() {
+                $('#chat-box').empty();
+                $('#user-input').val('');
+                $('#welcome-message').show();
+                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+            });
+        });
+    </script>
+</body>
+</html>
