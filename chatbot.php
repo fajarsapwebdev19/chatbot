@@ -6,7 +6,7 @@ $store = [
     'name' => 'Toko Kue Manis A',
     'address' => 'Jalan Manis No.1, Jakarta',
     'hours' => '08:00 - 20:00',
-    'contact' => 'contact@tokokuea.com',
+    'contact' => 'Silahkan klik tautan berikut untuk menghubungi kami <a href="">Hubungi Kami</a>',
     'menu' => 'Kue Cokelat, Kue Keju, Kue Vanilla',
     'prices' => 'Kue Cokelat: Rp. 50.000, Kue Keju: Rp. 60.000, Kue Vanilla: Rp. 45.000'
 ];
@@ -16,7 +16,7 @@ $response = '';
 // Daftar kata kunci dan sinonim
 $keywords = [
     'nanya' => ['nanya', 'bertanya', 'mau nanya', 'ingin nanya'],
-    'hallo' => ['selamat pagi', 'selamat siang', 'selamat malam', 'test', 'hallo', 'hello'],
+    'hallo' => ['start','mulai','selamat pagi', 'selamat siang', 'selamat malam', 'test', 'hallo', 'hello'],
     'menu' => ['menu', 'daftar kue', 'jenis kue', 'pilihan kue', 'daftar menu', 'menu kue'],
     'harga' => ['harga', 'biaya', 'tarif', 'harga kue', 'harga menu', 'biaya kue'],
     'jam buka' => ['jam buka', 'waktu buka', 'jam operasional', 'jam kerja', 'waktu operasional', 'jam toko'],
@@ -62,7 +62,7 @@ if (isset($_POST['message'])) {
                 $response = 'Alamat ' . $store['name'] . ' adalah ' . $store['address'] . '.';
                 break;
             case 'kontak':
-                $response = 'Anda dapat menghubungi ' . $store['name'] . ' di email: ' . $store['contact'] . '.';
+                $response = 'Untuk info lengkap dari ' . $store['name'] . ' Anda dapat menghungi kami. ' . $store['contact'] . '.';
                 break;
             case 'buka':
                 $response = 'Toko ini buka dari pukul ' . $store['hours'] . '.';
