@@ -1,36 +1,27 @@
 <?php
 header('Content-Type: text/plain');
 
-// Informasi toko kue
 $store = [
-    'name' => 'Sweet Delight Bakery',
-    'address' => 'Jalan Manis No. 5, Jakarta',
-    'hours' => '08:00 - 22:00',
-    'contact' => 'Silahkan klik tautan <a href="">Disini</a> untuk menghubungi admin kami',
-    'products' => [
-        'Kue Cokelat' => 'Rp. 50.000',
-        'Kue Keju' => 'Rp. 60.000',
-        'Kue Vanilla' => 'Rp. 45.000',
-        'Kue Red Velvet' => 'Rp. 70.000',
-        'Kue Tiramisu' => 'Rp. 65.000'
-    ]
+    'name' => 'Za Cakess',
+    'hours' => '10:00 - 22:00',
 ];
 
 $response = '';
 
 // Daftar kata kunci dan sinonim
 $keywords = [
-    'nanya' => ['nanya', 'bertanya', 'mau nanya', 'ingin nanya'],
-    'hallo' => ['start', 'mulai', 'selamat pagi', 'selamat siang', 'selamat malam', 'test', 'hallo', 'hello'],
-    'produk' => ['produk', 'daftar kue', 'menu kue', 'pilihan kue', 'daftar produk'],
-    'harga' => ['harga', 'biaya', 'tarif', 'harga kue', 'harga menu'],
-    'jam buka' => ['jam buka', 'waktu buka', 'jam operasional', 'jam kerja', 'waktu operasional', 'jam toko'],
-    'alamat' => ['alamat', 'lokasi', 'tempat', 'alamat toko', 'alamat kue'],
-    'kontak' => ['kontak', 'hubungi', 'email', 'nomor kontak', 'cara menghubungi', 'informasi kontak'],
-    'buka' => ['buka', 'beroperasi', 'operasional', 'waktu operasional'],
-    'penawaran' => ['penawaran', 'diskon', 'promo', 'penawaran khusus', 'promosi'],
-    'sedia' => ['sedia', 'tersedia', 'ada', 'stok'],
-    'ketersediaan' => ['ketersediaan', 'tersedia', 'stok', 'apakah ada']
+    'hallo' => ['hai', 'hallo', 'test', 'mulai', 'hi'],
+    'ukuran' => ['ukuran', 'cek ukuran', 'cek produk'],
+    'bantuan' => ['bantuan', 'daftar pertanyaan'],
+    'jam' => ['jam operasional', 'jam buka', 'jam', 'buka kapan'],
+    'harga' => ['harga', 'cek harga'],
+    'biaya' => ['biaya', 'biaya pengiriman'],
+    'custom' => ['bisa custom', 'custom'],
+    'metode' => ['metode', 'payment method', 'pembayaran'],
+    'pengiriman' => ['metode pengiriman', 'pengiriman', 'cara pengambil', 'ambil'],
+    'alamat' => ['alamat', 'dimana tokonya', 'lokasi toko', 'lokasi', 'tempat'],
+    'hubungi' => ['menghubungi', 'hubungi', 'kontak', 'bicara', 'info lanjut'],
+    'terima kasih' => ['makasih', 'terima kasih', 'thanks', 'thank you']
 ];
 
 // Fungsi untuk mencari kata kunci
@@ -45,18 +36,9 @@ function matchKeyword($message, $keywords) {
     return null;
 }
 
-// Fungsi untuk membuat daftar harga produk
-function listProductPrices($productDetails) {
-    $response = '';
-    foreach ($productDetails as $product => $price) {
-        $response .= $product . ': ' . $price . '\n';
-    }
-    return $response;
-}
-
 // Fungsi untuk memberikan petunjuk umum
 function provideGuidance() {
-    return 'Untuk mendapatkan informasi harga, sebutkan nama kue yang Anda inginkan, seperti "Berapa harga Kue Cokelat?"';
+    return 'silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
 }
 
 // Ambil pesan dari permintaan POST
@@ -68,54 +50,56 @@ if (isset($_POST['message'])) {
 
     if ($keyword) {
         switch ($keyword) {
-            case 'produk':
-                $response = 'Daftar kue di ' . $store['name'] . ' adalah: ' . implode(', ', array_keys($store['products'])) . '.';
-                break;
-            case 'harga':
-                // Menyaring keyword untuk produk tertentu
-                $product = array_search($message, array_map('strtolower', array_keys($store['products'])));
-                if ($product && isset($store['products'][$product])) {
-                    $response = 'Harga ' . $product . ' adalah ' . $store['products'][$product] . '.';
-                } else {
-                    $response = provideGuidance();
-                }
-                break;
-            case 'jam buka':
-                $response = 'Jam buka ' . $store['name'] . ' adalah dari pukul ' . $store['hours'] . '.';
+            case 'bantuan':
+                $response = '
+                Berikut daftar perintah yang bisa di gunakan di chatbot :
+                <ul>
+                    <li>Ukuran : untuk mengetahui ukuran kue apa saja yang tersedia di toko kami</li>
+                    <li>Metode : untuk mengetahui metode pembayaran apa saja yang bisa digunakan oleh toko kami</li>
+                    <li>Pengiriman : untuk mengetahui layanan pengiriman apa saja yang ada di toko kami</li>
+                    <li>Jam buka : untuk mengetahui jam operasional toko kami</li>
+                    <li>Bisa Custom : untuk mengetahui bisa atau tidaknya jika ingin custom design</li>
+                    <li>Alamat : untuk mengetahui alamat toko kami</li>
+                    <li>Kontak : untuk menghubungi admin toko kami</li>
+                </ul>';
                 break;
             case 'alamat':
-                $response = 'Alamat ' . $store['name'] . ' adalah ' . $store['address'] . '.';
-                break;
-            case 'kontak':
-                $response = 'Untuk info lengkap dari ' . $store['name'] . ' Anda dapat menghubungi kami. ' . $store['contact'] . '.';
-                break;
-            case 'buka':
-                $response = 'Toko ini buka dari pukul ' . $store['hours'] . '.';
-                break;
-            case 'penawaran':
-                $response = 'Saat ini kami tidak memiliki penawaran khusus. Cek situs kami untuk promo terbaru.';
-                break;
-            case 'sedia':
-                $response = 'Kami memiliki berbagai macam kue yang tersedia di toko kami. Cek menu untuk detail lebih lanjut.';
-                break;
-            case 'ketersediaan':
-                $response = 'Semua produk dalam daftar menu kami saat ini tersedia.';
-                break;
-            case 'nanya':
-                $response = 'Silakan masukkan pertanyaan Anda.';
+                $response = 'Silahkan klik tautan <a class="link" href="">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hallo':
-                $response = 'Hallo, Selamat Datang di Chatbot Sweet Delight Bakery. Ada yang bisa dibantu?';
+                $response = 'Hallo, Selamat datang di toko '.$store['name'].'  apabila ada pertanyaan ketik bantuan';
                 break;
-            default:
-                $response = 'Pertanyaan tidak dikenali. Coba tanyakan tentang produk, harga, jam buka, alamat, atau kontak ' . $store['name'] . '.';
+            case 'metode':
+                $response = 'Metode Pembayaran Di '. $store['name'] . ' Menggunakan Transfer (Bank Bca), apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'pengiriman':
+                $response = 'Untuk Pengiriman Di '. $store['name'] . ' Menggunakan Jasa Go Send bisa COD dan Non COD , apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'jam':
+                $response = 'Toko '.$store['name'].' Buka Dari Jam : ' . $store['hours'] . ' apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'ukuran':
+                $response = 'Ada 4 macam, yaitu ukuran 10cm, 16cm, 20cm dan 24cm, Untuk mengetahui harga silahkan ketik cek harga';
+                break;
+            case 'harga':
+                $response = 'Harga mulai dari 50-400 ribu , apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'biaya':
+                $response = 'Untuk pengiriman dikenakan tarif sesuai dengan dekat atau jauhnya jarak tempuh, apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'custom':
+                $response = 'Tentu bisa, silahkan kirimkan gambar yang anda inginkan ke nomer whatsapp dengan klik tautan <a class="link" href="">Di sini</a>,  apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'hubungi':
+                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="">berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'terima kasih':
+                $response = 'Sama-sama, terima kasih sudah menghubungi chat bot kami, mohon maaf apabila ada kesalahan dari chat bot di '. $store['name']. ' Apabila ada pertanyaan lagi silahkan ketik bantuan untuk mengetahui list pertanyaan';
                 break;
         }
     } else {
-        $response = 'Maaf, data tidak lengkap. ' . provideGuidance();
+        $response = 'Maaf, pertanyaan anda tidak di kenali oleh bot kami. ' . provideGuidance();
     }
-} else {
-    $response = 'Maaf, data tidak lengkap. ' . provideGuidance();
 }
 
 echo $response;

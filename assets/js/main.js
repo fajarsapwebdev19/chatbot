@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    $('.to-chatbot').click(function(){
+        window.location.href='?page=kontak';
+    })
+
     // Tampilkan pesan petunjuk awal jika chat box kosong
     function showWelcomeMessage() {
         if ($('#chat-box').children().length === 0) {
@@ -67,13 +71,6 @@ $(document).ready(function() {
                     }
                 });
             }
-
-            // $.post('chatbot.php', { message: userInput }, function(response) {
-            //     response = $('<div/>').html(response).html();
-            //     $('#chat-box').append('<div class="message bot"><span>' + response + '</span></div>');
-            //     $('#user-input').val('');
-            //     $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-            // });
         } else {
             alert('Silakan ketikkan pertanyaan.');
         }

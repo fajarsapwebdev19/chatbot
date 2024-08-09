@@ -4,14 +4,16 @@
         <!-- Pesan chat akan ditampilkan di sini -->
     </div>
     <div id="welcome-message">
-        Selamat datang di layanan chatbot Stone Street Shop! Silakan ketikkan pertanyaan berikut : <br>.
+        Selamat datang di layanan chatbot Za Cakess! Silakan ketikkan pertanyaan berikut : <br>.
         <ul>
-            <li>Produk : untuk mengetahui produk apa saja yang tersedia di toko kami</li>
+            <li>Ukuran : untuk mengetahui ukuran kue apa saja yang tersedia di toko kami</li>
             <li>Metode : untuk mengetahui metode pembayaran apa saja yang bisa digunakan oleh toko kami</li>
             <li>Pengiriman : untuk mengetahui layanan pengiriman apa saja yang ada di toko kami</li>
             <li>Jam buka : untuk mengetahui jam operasional toko kami</li>
+            <li>Bisa Custom : untuk mengetahui bisa atau tidaknya jika ingin custom design</li>
             <li>Alamat : untuk mengetahui alamat toko kami</li>
             <li>Kontak : untuk menghubungi admin toko kami</li>
+            <li>Bantuan : untuk list pertanyaan apa saja yang tersedia di bot kami</li>
         </ul>
     </div>
     <form id="chat-form" autocomplete="off">

@@ -12,6 +12,21 @@ body{
 .content{
     line-height: 2rem;
 }
+
+.url_whatsapp{
+    text-decoration: none;
+    color: #01325c;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #70bcffad;
+}
+
+a:active {
+    text-decoration: none;
+}
+
 .chatbot-card {
     min-height: 15px;
     display: flex;

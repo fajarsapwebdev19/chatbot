@@ -8,6 +8,12 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .link {
+            color: #eaeaea !important;
+        }
+    </style>
 </head>
 
 <body>

@@ -3,54 +3,27 @@ header('Content-Type: text/plain');
 
 // Informasi toko pakaian tunggal
 $store = [
-    'name' => 'Fashion Avenue',
-    'address' => 'Jalan Fesyen No.1, Jakarta',
+    'name' => 'Stone Street Shop',
     'hours' => '10:00 - 22:00',
-    'contact' => 'Silahkan klik tautan <a href="">Disini</a> Untuk terhubung dengan admin kami, untuk info lebih lanjut',
-    'products' => [
-        'Kaos Polos' => [
-            'sizes' => [
-                'S' => 'Rp. 100.000',
-                'M' => 'Rp. 105.000',
-                'L' => 'Rp. 110.000',
-                'XL' => 'Rp. 115.000'
-            ]
-        ],
-        'Celana Jeans' => [
-            'sizes' => [
-                '28' => 'Rp. 250.000',
-                '30' => 'Rp. 260.000',
-                '32' => 'Rp. 270.000',
-                '34' => 'Rp. 280.000'
-            ]
-        ],
-        'Jaket Kulit' => [
-            'sizes' => [
-                'M' => 'Rp. 500.000',
-                'L' => 'Rp. 520.000',
-                'XL' => 'Rp. 540.000'
-            ]
-        ]
-    ]
 ];
 
 $response = '';
 
 // Daftar kata kunci dan sinonim
 $keywords = [
-    'nanya' => ['nanya', 'bertanya', 'mau nanya', 'ingin nanya'],
-    'hallo' => ['start', 'mulai', 'selamat pagi', 'selamat siang', 'selamat malam', 'test', 'hallo', 'hello'],
-    'produk' => ['produk', 'daftar produk', 'jenis pakaian', 'pilihan produk', 'daftar produk', 'menu produk'],
-    'harga' => ['harga', 'biaya', 'tarif', 'harga pakaian', 'harga produk', 'biaya produk'],
-    'jam buka' => ['jam buka', 'waktu buka', 'jam operasional', 'jam kerja', 'waktu operasional', 'jam toko'],
-    'alamat' => ['alamat', 'lokasi', 'tempat', 'alamat toko', 'alamat pakaian', 'lokasi toko'],
-    'kontak' => ['kontak', 'hubungi', 'terhubung', 'cara menghubungi', 'informasi kontak'],
-    'buka' => ['buka', 'beroperasi', 'operasional', 'waktu operasional'],
-    'metode' => ['pembayaran', 'metode', 'payment', 'bayar'],
-    'pengiriman' => ['kirim', 'pengiriman', 'cek kirim', 'kurir'],
-    'kaos polos' => ['kaos polos', 'kaos', 't-shirt', 'kaos'],
-    'celana jeans' => ['celana jeans', 'jeans', 'celana'],
-    'jaket kulit' => ['jaket kulit', 'jaket', 'jaket kulit']
+    'hallo' => ['hai', 'hallo', 'test', 'mulai', 'hi'],
+    'ukuran' => ['ukuran', 'cek ukuran', 'cek produk'],
+    'bantuan' => ['bantuan', 'daftar pertanyaan'],
+    'jam' => ['jam operasional', 'jam buka', 'jam', 'buka kapan'],
+    'harga' => ['harga', 'cek harga'],
+    'biaya' => ['biaya', 'biaya pengiriman'],
+    'custom' => ['bisa custom', 'custom'],
+    'kebijakan' => ['aturan', 'kebijakan', 'tanggung jawab'],
+    'metode' => ['metode', 'payment method', 'pembayaran'],
+    'pengiriman' => ['metode pengiriman', 'pengiriman', 'kurir'],
+    'alamat' => ['alamat', 'dimana tokonya', 'lokasi toko', 'lokasi', 'tempat'],
+    'hubungi' => ['menghubungi', 'hubungi', 'kontak', 'bicara', 'info lanjut'],
+    'terima kasih' => ['makasih', 'terima kasih', 'thanks', 'thank you']
 ];
 
 // Fungsi untuk mencari kata kunci
@@ -67,7 +40,7 @@ function matchKeyword($message, $keywords) {
 
 // Fungsi untuk memberikan petunjuk umum
 function provideGuidance() {
-    return 'silahkan ketik produk, jam buka, kontak, alamat';
+    return 'silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
 }
 
 // Ambil pesan dari permintaan POST
@@ -79,69 +52,60 @@ if (isset($_POST['message'])) {
 
     if ($keyword) {
         switch ($keyword) {
-            case 'produk':
-                $response = 'Produk di ' . $store['name'] . ' adalah: ' . implode(', ', array_keys($store['products'])) . '. Silahkan ketik salah satu dari produk kami nanti akan muncul list harga beserta ukuran dari produk kami.';
-                break;
-            case 'harga':
-                $response = 'Produk di ' . $store['name'] . ' adalah: ' . implode(', ', array_keys($store['products'])) . '. Silahkan ketik salah satu dari produk kami nanti akan muncul list harga beserta ukuran dari produk kami.';
-                break;
-            case 'jam buka':
-                $response = 'Jam buka ' . $store['name'] . ' adalah dari pukul ' . $store['hours'] . '.';
+            case 'bantuan':
+                $response = '
+                Berikut daftar perintah yang bisa di gunakan di chatbot :
+                <ul>
+                    <li>Ukuran : untuk mengetahui ukuran apa saja yang tersedia di toko kami</li>
+                    <li>Kebijakan : untuk mengetahui aturan yang ada di toko kami</li>
+                    <li>Metode : untuk mengetahui metode pembayaran apa saja yang bisa digunakan oleh toko kami</li>
+                    <li>Pengiriman : untuk mengetahui layanan pengiriman apa saja yang ada di toko kami</li>
+                    <li>Jam buka : untuk mengetahui jam operasional toko kami</li>
+                    <li>Bisa Custom : untuk mengetahui bisa atau tidaknya jika ingin custom design</li>
+                    <li>Alamat : untuk mengetahui alamat toko kami</li>
+                    <li>Kontak : untuk menghubungi admin toko kami</li>
+                </ul>';
                 break;
             case 'alamat':
-                $response = 'Alamat ' . $store['name'] . ' adalah ' . $store['address'] . '.';
-                break;
-            case 'kontak':
-                $response = 'Untuk info lengkap dari ' . $store['name'] . ' Anda dapat menghungi kami. ' . $store['contact'] . '.';
-                break;
-            case 'buka':
-                $response = 'Toko ini buka dari pukul ' . $store['hours'] . '.';
-                break;
-            case 'metode':
-                $response = 'Toko kami melayani pembayaran via transfer dan tunai';
-                break;
-            case 'pengiriman':
-                $response = 'Toko kami menggunakan jasa pengiriman : JNE, JNT, Sicepat, Anter aja, Shoppe Express';
-                break;
-            case 'kaos polos':
-            case 'celana jeans':
-            case 'jaket kulit':
-                // Menyaring keyword untuk produk tertentu
-                $productMap = [
-                    'kaos polos' => 'Kaos Polos',
-                    'celana jeans' => 'Celana Jeans',
-                    'jaket kulit' => 'Jaket Kulit'
-                ];
-                
-                $productName = isset($productMap[$keyword]) ? $productMap[$keyword] : null;
-
-                if ($productName && isset($store['products'][$productName])) {
-                    $sizes = $store['products'][$productName]['sizes'];
-                    $response = 'Harga untuk ' . $productName . ' berdasarkan ukuran adalah : <br>';
-                    foreach ($sizes as $size => $price) {
-                        $response .= '  Ukuran ' . $size . ' : ' . $price . '<br>';
-                    }
-
-                    $response .= 'Jika ingin bertanya lebih lanjut silahkan ketik kontak';
-                } else {
-                    $response = 'Produk tidak ditemukan.';
-                }
-                break;
-            case 'nanya':
-                $response = 'Silakan masukan pertanyaan, cek produk.';
+                $response = 'Silahkan klik tautan <a class="link" href="">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hallo':
-                $response = 'Hallo, Selamat Datang Di Chatbot Toko Pakaian, ada yang bisa dibantu';
+                $response = 'Hallo, Selamat datang di toko '.$store['name'].'  apabila ada pertanyaan ketik bantuan';
                 break;
-            default:
-                $response = 'Pertanyaan tidak dikenali. Coba tanyakan tentang produk, jam buka, alamat, atau kontak ' . $store['name'] . '.';
+            case 'metode':
+                $response = 'Metode Pembayaran Di '. $store['name'] . ' Menggunakan Transfer (Bank Bca) Dan Cash, Untuk nomor rekening silahkan klik tautan <a href="">berikut</a>, apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'pengiriman':
+                $response = 'Untuk Pengiriman Di '. $store['name'] . ' Menggunakan Jasa Go Send , apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'jam':
+                $response = 'Toko '.$store['name'].' Buka Dari Jam : ' . $store['hours'] . ' apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'ukuran':
+                $response = 'Ukuran yang tersedia mulai dari S-XL, Untuk mengetahui harga silahkan ketik cek harga';
+                break;
+            case 'harga':
+                $response = 'Harga mulai dari 70-110 ribu, apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'kebijakan':
+                $response = 'Bila terjadi ketidaksesuaian ukuran dan penukaran ukuran, bisa langsung dateng ke toko kami dengan alamat <a class="link" href="">Berikut</a>,  apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'biaya':
+                $response = 'Untuk pengiriman dikenakan tarif sesuai dengan dekat atau jauhnya jarak tempuh, apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'custom':
+                $response = 'Bisa, silahkan kirimkan gambar ke nomer whatsapp dengan klik tautan <a class="link" href="">Di sini</a>,  apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'hubungi':
+                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="">berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
+                break;
+            case 'terima kasih':
+                $response = 'Sama-sama, terima kasih sudah menghubungi chat bot kami, mohon maaf apabila ada kesalahan dari chat bot di '. $store['name']. ' Apabila ada pertanyaan lagi silahkan ketik bantuan untuk mengetahui list pertanyaan';
                 break;
         }
     } else {
-        $response = 'Maaf, data tidak lengkap. ' . provideGuidance();
+        $response = 'Maaf, pertanyaan anda tidak di kenali oleh bot kami. ' . provideGuidance();
     }
-} else {
-    $response = 'Maaf, data tidak lengkap. ' . provideGuidance();
 }
 
 echo $response;
