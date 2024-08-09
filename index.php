@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chat Bot</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/css/bootstrap.min.css?v=<?= mt_rand() ?>" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css?v=<?= mt_rand() ?>">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?= mt_rand() ?>">
 
     <style>
         .link {
@@ -35,9 +35,9 @@
             }
         ?>
     </div>
-    <script src="assets/js/jquery-3.7.1.slim.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery-3.7.1.slim.min.js?v=<?= mt_rand() ?>"></script>
+    <script src="assets/js/bootstrap.bundle.min.js?v=<?= mt_rand() ?>"></script>
+    <script src="assets/js/main.js?v=<?= mt_rand() ?>"></script>
 </body>
 
 </html>
