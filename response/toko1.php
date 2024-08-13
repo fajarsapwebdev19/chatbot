@@ -40,7 +40,7 @@ function matchKeyword($message, $keywords) {
 
 // Fungsi untuk memberikan petunjuk umum
 function provideGuidance() {
-    return 'silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
+    return 'Silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
 }
 
 // Ambil pesan dari permintaan POST
@@ -67,13 +67,13 @@ if (isset($_POST['message'])) {
                 </ul>';
                 break;
             case 'alamat':
-                $response = 'Silahkan klik tautan <a class="link" href="">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Silahkan klik tautan <a class="link" href="https://www.google.com/maps/place/Gg.+Kosambi+1,+Buaran+Indah,+Kec.+Tangerang,+Kota+Tangerang,+Banten+15141/@-6.1843602,106.6568651,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f91e5f60301d:0x5828f5b70ce686f8!8m2!3d-6.1843602!4d106.6568651!16s%2Fg%2F11j1btf_7p?hl=id-ID&entry=ttu" target="_blank">Berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hallo':
                 $response = 'Hallo, Selamat datang di toko '.$store['name'].'  apabila ada pertanyaan ketik bantuan';
                 break;
             case 'metode':
-                $response = 'Metode Pembayaran Di '. $store['name'] . ' Menggunakan Transfer (Bank Bca) Dan Cash, Untuk nomor rekening silahkan klik tautan <a href="">berikut</a>, apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Metode Pembayaran Di '. $store['name'] . ' Menggunakan Transfer (Bank Bca) Dan Cash (Datang ke toko), apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'pengiriman':
                 $response = 'Untuk Pengiriman Di '. $store['name'] . ' Menggunakan Jasa Go Send , apabila ada pertanyaan lagi ketik bantuan';
@@ -88,16 +88,16 @@ if (isset($_POST['message'])) {
                 $response = 'Harga mulai dari 70-110 ribu, apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'kebijakan':
-                $response = 'Bila terjadi ketidaksesuaian ukuran dan penukaran ukuran, bisa langsung dateng ke toko kami dengan alamat <a class="link" href="">Berikut</a>,  apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Bila terjadi ketidaksesuaian ukuran dan penukaran ukuran, bisa langsung dateng ke toko kami dengan alamat <a class="link" href="https://www.google.com/maps/place/Gg.+Kosambi+1,+Buaran+Indah,+Kec.+Tangerang,+Kota+Tangerang,+Banten+15141/@-6.1843602,106.6568651,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f91e5f60301d:0x5828f5b70ce686f8!8m2!3d-6.1843602!4d106.6568651!16s%2Fg%2F11j1btf_7p?hl=id-ID&entry=ttu" target="_blank">Berikut</a>,  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'biaya':
                 $response = 'Untuk pengiriman dikenakan tarif sesuai dengan dekat atau jauhnya jarak tempuh, apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'custom':
-                $response = 'Bisa, silahkan kirimkan gambar ke nomer whatsapp dengan klik tautan <a class="link" href="">Di sini</a>,  apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Bisa, silahkan kirimkan gambar ke nomer whatsapp dengan klik tautan <a class="link" href="https://wa.me/6289618488456?text=saya ingin kirim gambar custom untuk baju pesanan saya" target="_blank">Di sini</a>, apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hubungi':
-                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="">berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="https://wa.me/6289618488456?text=hallo, saya ingin bertanya seputar baju" target="_blank">Berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'terima kasih':
                 $response = 'Sama-sama, terima kasih sudah menghubungi chat bot kami, mohon maaf apabila ada kesalahan dari chat bot di '. $store['name']. ' Apabila ada pertanyaan lagi silahkan ketik bantuan untuk mengetahui list pertanyaan';

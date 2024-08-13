@@ -38,7 +38,7 @@ function matchKeyword($message, $keywords) {
 
 // Fungsi untuk memberikan petunjuk umum
 function provideGuidance() {
-    return 'silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
+    return 'Silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
 }
 
 // Ambil pesan dari permintaan POST
@@ -64,7 +64,7 @@ if (isset($_POST['message'])) {
                 </ul>';
                 break;
             case 'alamat':
-                $response = 'Silahkan klik tautan <a class="link" href="">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Silahkan klik tautan <a class="link" href="" target="_blank">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hallo':
                 $response = 'Hallo, Selamat datang di toko '.$store['name'].'  apabila ada pertanyaan ketik bantuan';
@@ -73,7 +73,7 @@ if (isset($_POST['message'])) {
                 $response = 'Metode Pembayaran Di '. $store['name'] . ' Menggunakan Transfer (Bank Bca), apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'pengiriman':
-                $response = 'Untuk Pengiriman Di '. $store['name'] . ' Menggunakan Jasa Go Send bisa COD dan Non COD , apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Untuk Pengiriman Di '. $store['name'] . ' Menggunakan Jasa Go Send, apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'jam':
                 $response = 'Toko '.$store['name'].' Buka Dari Jam : ' . $store['hours'] . ' apabila ada pertanyaan lagi ketik bantuan';
@@ -88,10 +88,10 @@ if (isset($_POST['message'])) {
                 $response = 'Untuk pengiriman dikenakan tarif sesuai dengan dekat atau jauhnya jarak tempuh, apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'custom':
-                $response = 'Tentu bisa, silahkan kirimkan gambar yang anda inginkan ke nomer whatsapp dengan klik tautan <a class="link" href="">Di sini</a>,  apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Tentu bisa, silahkan kirimkan gambar yang anda inginkan ke nomer whatsapp dengan klik tautan <a class="link" href="https://wa.me/628569091544?text=saya ingin kirim gambar custom kue yang saya pesan" target="_blank">Di sini</a>,  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hubungi':
-                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="">berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="https://wa.me/628569091544?text=saya ingin bertanya lebih lanjut tentang kue di za cakes">Berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'terima kasih':
                 $response = 'Sama-sama, terima kasih sudah menghubungi chat bot kami, mohon maaf apabila ada kesalahan dari chat bot di '. $store['name']. ' Apabila ada pertanyaan lagi silahkan ketik bantuan untuk mengetahui list pertanyaan';
