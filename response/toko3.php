@@ -36,7 +36,7 @@ function matchKeyword($message, $keywords) {
 
 // Fungsi untuk memberikan petunjuk umum
 function provideGuidance() {
-    return 'silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
+    return 'Silahkan ketik bantuan, untuk mengetahui detail pertanyaan apa saja yang bisa di tanya ke bot kami, Terima kasih';
 }
 
 // Ambil pesan dari permintaan POST
@@ -52,18 +52,16 @@ if (isset($_POST['message'])) {
                 $response = '
                 Berikut daftar perintah yang bisa di gunakan di chatbot :
                 <ul>
-                    <li>Ukuran : untuk mengetahui ukuran kue apa saja yang tersedia di toko kami</li>
+                    <li>Cek Produk : untuk mengetahui produk apa saja yang dijual</li>
                     <li>Metode : untuk mengetahui metode pembayaran apa saja yang bisa digunakan oleh toko kami</li>
-                    <li>Pengiriman : untuk mengetahui layanan pengiriman apa saja yang ada di toko kami</li>
+                    <li>Pengiriman : untuk mengetahui apakah di warung juriah menyediakan jenis pengiriman</li>
                     <li>Jam buka : untuk mengetahui jam operasional toko kami</li>
-                    <li>Bisa Custom : untuk mengetahui bisa atau tidaknya jika ingin custom design</li>
                     <li>Alamat : untuk mengetahui alamat toko kami</li>
                     <li>Kontak : untuk menghubungi admin toko kami</li>
                 </ul>';
                 break;
             case 'alamat':
-                $response = 'Silahkan klik tautan <a class="link" href="">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
-                break;
+                $response = 'Silahkan klik tautan <a class="link" href="https://www.google.com/maps/place/Gg.+Kosambi+1,+Buaran+Indah,+Kec.+Tangerang,+Kota+Tangerang,+Banten+15141/@-6.1843602,106.6568651,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f91e5f60301d:0x5828f5b70ce686f8!8m2!3d-6.1843602!4d106.6568651!16s%2Fg%2F11j1btf_7p?hl=id-ID&entry=ttu" target="_blank">Berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
             case 'hallo':
                 $response = 'Hallo, Selamat datang di '.$store['name'].'  apabila ada pertanyaan ketik bantuan';
                 break;
@@ -79,14 +77,8 @@ if (isset($_POST['message'])) {
             case 'produk':
                 $response = 'Warung juriah tersedia beberapa macam sembako hingga kebutuhan produk rumah tangga seperti deterjen, Untuk mengetahui harga silahkan ketik kontak';
                 break;
-            case 'harga':
-                $response = 'Untuk harga bisa datang langsung ke '.$store['name'].' dengan klik <a class="link" href="">Tautan berikut</a> atau bisa menghubungi via whatsapp <a class="link" href="">Berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
-                break;
-            case 'custom':
-                $response = 'Tentu bisa, silahkan kirimkan gambar yang anda inginkan ke nomer whatsapp dengan klik tautan <a class="link" href="">Di sini</a>,  apabila ada pertanyaan lagi ketik bantuan';
-                break;
             case 'hubungi':
-                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="">berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Untuk info lebih lanjut terkait produk yang kami jual, silahkan klik tautan <a class="link" href="https://wa.me/6282113933203?text=saya ingin mengetahui produk harga yang di jual di warung juriah" target="_blank">berikut</a> , apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'terima kasih':
                 $response = 'Sama-sama, terima kasih sudah menghubungi chat bot kami, mohon maaf apabila ada kesalahan dari chat bot di '. $store['name']. ' Apabila ada pertanyaan lagi silahkan ketik bantuan untuk mengetahui list pertanyaan';

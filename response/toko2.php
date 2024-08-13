@@ -64,7 +64,7 @@ if (isset($_POST['message'])) {
                 </ul>';
                 break;
             case 'alamat':
-                $response = 'Silahkan klik tautan <a class="link" href="" target="_blank">berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
+                $response = 'Silahkan klik tautan <a class="link" href="https://www.google.com/maps/place/Gg.+Kosambi+1,+Buaran+Indah,+Kec.+Tangerang,+Kota+Tangerang,+Banten+15141/@-6.1843602,106.6568651,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f91e5f60301d:0x5828f5b70ce686f8!8m2!3d-6.1843602!4d106.6568651!16s%2Fg%2F11j1btf_7p?hl=id-ID&entry=ttu" target="_blank">Berikut</a> untuk mengetahui titik lokasi ' . $store['name'].'  apabila ada pertanyaan lagi ketik bantuan';
                 break;
             case 'hallo':
                 $response = 'Hallo, Selamat datang di toko '.$store['name'].'  apabila ada pertanyaan ketik bantuan';
