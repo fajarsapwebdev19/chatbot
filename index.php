@@ -13,6 +13,10 @@
         .link {
             color: #eaeaea !important;
         }
+
+        #chat-box{
+            display: none;
+        }
     </style>
 </head>
 

@@ -23,6 +23,8 @@ $(document).ready(function() {
         if (userInput) {
             // Sembunyikan pesan sambutan setelah ada pesan dari pengguna
             $('#welcome-message').hide();
+
+            $('#chat-box').show();
             
             $('#chat-box').append('<div class="message user"><span>' + userInput + '</span></div>');
 
