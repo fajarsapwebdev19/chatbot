@@ -4,7 +4,7 @@
         <div class="card chatbot-card">
             <div class="card-body">
                 <a href="?page=bot_toko1">
-                    <h1 class="fas fa-robot"></h1>
+                    <h1><img src="assets/chatboticon.png" width="50" alt=""></h1>
                     <span> Stone Street Shop</span>
                 </a>
             </div>
@@ -14,7 +14,7 @@
         <div class="card chatbot-card">
             <div class="card-body">
                 <a href="?page=bot_toko2">
-                    <h1 class="fas fa-robot"></h1>
+                    <h1><img src="assets/chatboticon.png" width="50" alt=""></h1>
                     <span>Za Cakess</span>
                 </a>
             </div>
@@ -24,7 +24,7 @@
         <div class="card chatbot-card">
             <div class="card-body">
                 <a href="?page=bot_toko3">
-                    <h1 class="fas fa-robot"></h1>
+                    <h1><img src="assets/chatboticon.png" width="50" alt=""></h1>
                     <span>Warung Juriah</span>
                 </a>
             </div>
